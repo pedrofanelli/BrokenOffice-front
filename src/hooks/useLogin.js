@@ -18,8 +18,10 @@ const useLogin = () => {
       };
       const loggedUser = await axios.post(`${ROUTE}/user/login`, userData, {
         withCredentials: true,
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
       });
-      dispatch(setUser(loggedUser.data));
+      dispatch(setUser(loggedUser.data.user));
+      localStorage.setItem("token", loggedUser.data.token)
       navigate("/");
     } catch (err) {
       toast.error("Wrong email or password");

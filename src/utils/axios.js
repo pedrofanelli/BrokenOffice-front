@@ -6,6 +6,7 @@ export async function axiosDeleteOffice(id) {
   try {
     const deletedOffice = await axios.delete(`${ROUTE}/offices/delete/${id}`, {
       withCredentials: true,
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
     });
     toast.success("Office deleted successfully");
     return deletedOffice;
@@ -19,6 +20,7 @@ export async function axiosGetAllOffices() {
   try {
     const offices = await axios.get(`${ROUTE}/offices`, {
       withCredentials: true,
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
     });
     return offices.data;
   } catch (error) {
@@ -30,6 +32,7 @@ export async function axiosPutOffice(id, obj) {
   try {
     const offices = await axios.put(`${ROUTE}/offices/edit/${id}`, obj, {
       withCredentials: true,
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
     });
     toast.success("Office edited successfully");
     return offices.data;
@@ -43,6 +46,7 @@ export async function axiosPostOffice(obj) {
   try {
     const offices = await axios.post(`${ROUTE}/offices/add`, obj, {
       withCredentials: true,
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
     });
     toast.success("Office added successfully");
     return offices.data;
@@ -56,6 +60,7 @@ export async function axiosGetMe() {
   try {
     const loggedUser = await axios.get(`${ROUTE}/user/me`, {
       withCredentials: true,
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
     });
     return loggedUser.data;
   } catch (error) {
@@ -67,6 +72,7 @@ export async function axiosGetAllUsers() {
   try {
     const users = await axios.get(`${ROUTE}/collaborators/users`, {
       withCredentials: true,
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
     });
     return users.data;
   } catch (error) {
@@ -78,6 +84,7 @@ export async function axiosRegisterUser(obj) {
   try {
     const user = await axios.post(`${ROUTE}/collaborators/create/user`, obj, {
       withCredentials: true,
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
     });
     toast.success("Registered succesfully");
     return user;
@@ -91,6 +98,7 @@ export async function axiosDeleteUser(email) {
   try {
     const user = await axios.delete(`${ROUTE}/collaborators/delete/${email}`, {
       withCredentials: true,
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
     });
     toast.success("Deleted succesfully");
     return user;
@@ -116,6 +124,7 @@ export async function axiosGetReportHistory() {
   try {
     const reports = await axios.get(`${ROUTE}/reports/history`, {
       withCredentials: true,
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
     });
     return reports.data;
   } catch (error) {
@@ -127,7 +136,7 @@ export async function axiosGetClosestOffices(lat, lng) {
   try {
     const closestOffices = await axios.get(
       `${ROUTE}/reports/geoffice?lat=${lat}&long=${lng}`,
-      { withCredentials: true }
+      { withCredentials: true, headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
     );
     return closestOffices.data;
   } catch (error) {
@@ -139,6 +148,7 @@ export async function axiosPostNewReport(obj) {
   try {
     const office = await axios.post(`${ROUTE}/reports/create`, obj, {
       withCredentials: true,
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
     });
     return office.data;
   } catch (error) {
@@ -148,10 +158,11 @@ export async function axiosPostNewReport(obj) {
 }
 export async function axiosPutUserType(obj) {
   try {
-    const { data } = await axios.put(`${ROUTE}/collaborators/edit/type`, obj, {
+    const type = await axios.put(`${ROUTE}/collaborators/edit/type`, obj, {
       withCredentials: true,
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
     });
-    return data;
+    return type.data;
   } catch (error) {
     console.error(error);
   }
@@ -161,6 +172,7 @@ export async function axiosGetAssignedReportsService() {
   try {
     const reports = await axios.get(`${ROUTE}/reports/service`, {
       withCredentials: true,
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
     });
     return reports.data;
   } catch (error) {
@@ -173,7 +185,7 @@ export async function axiosPutReportStatus(id, obj) {
     const updatedReport = await axios.put(
       `${ROUTE}/reports/edit/state/${id}`,
       obj,
-      { withCredentials: true }
+      { withCredentials: true, headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
     );
     toast.success("Report status changed successfully");
     return updatedReport.data;
@@ -187,6 +199,7 @@ export async function axiosShareReport(reportId, emailTo) {
   try {
     const sent = await axios.post(`${ROUTE}/reports/share`, {reportId, emailTo}, {
       withCredentials: true,
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
     });
     return sent.data;
   } catch (error) {
@@ -198,6 +211,7 @@ export async function axiosPostGenerateRestoreLink(email) {
   try {
     const sent = await axios.post(`${ROUTE}/user/restore/password`, {email}, {
       withCredentials: true,
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
     });
     if (!sent) return {error: true, data: "Something went wrong"}
     return sent;
@@ -210,6 +224,7 @@ export async function axiosPostRestorePass(token, password) {
   try {
     const sent = await axios.post(`${ROUTE}/user/restore/password/${token}`, {password}, {
       withCredentials: true,
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
     });
     if (!sent) return {error: true, data: "Something went wrong"}
     return sent;
@@ -222,6 +237,7 @@ export async function axiosGetInboxSolver() {
   try {
     const notifications = await axios.get(`${ROUTE}/chats/solverinbox`, {
       withCredentials: true,
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
     });
     return notifications.data;
   } catch (error) {
@@ -233,6 +249,7 @@ export async function axiosGetInboxIssuer() {
   try {
     const notifications = await axios.get(`${ROUTE}/chats/issuerinbox`, {
       withCredentials: true,
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
     });
     return notifications.data;
   } catch (error) {

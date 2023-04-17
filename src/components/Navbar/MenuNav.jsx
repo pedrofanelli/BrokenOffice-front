@@ -39,7 +39,7 @@ export default function MenuNav() {
       const user = await axios.post(
         `${ROUTE}/user/logout`,
         {},
-        { withCredentials: true }
+        { withCredentials: true, headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
       );
       if (user) dispatch(setUser({}));
       localStorage.removeItem("userPWA");
@@ -47,6 +47,7 @@ export default function MenuNav() {
       localStorage.removeItem("personalReportsPWA");
       localStorage.removeItem("serviceReportsPWA");
       localStorage.removeItem("allUsersPWA");
+      localStorage.removeItem("token");
       navigate("/");
     } catch (error) {
       console.error(error);

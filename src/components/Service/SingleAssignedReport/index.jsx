@@ -26,6 +26,7 @@ const SingleTicketService = () => {
     axios
       .get(`${process.env.REACT_APP_ROUTE}/reports/single/${id}`, {
         withCredentials: true,
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
       })
       .then((res) => {
         dispatch(updateStatusReport(res.data))

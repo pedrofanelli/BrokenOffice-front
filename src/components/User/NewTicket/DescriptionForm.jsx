@@ -46,7 +46,7 @@ export default function DescriptionForm() {
       axios
         .post(`${process.env.REACT_APP_ROUTE}/reports/create/img`, formData, {
           withCredentials: true,
-          headers: { "Content-Type": "multipart/form-data" },
+          headers: { "Content-Type": "multipart/form-data", Authorization: `Bearer ${localStorage.getItem("token")}` },
         })
         .then((res) => dispatch(setImage(res.data)))
         .catch((err) => console.error(err));
