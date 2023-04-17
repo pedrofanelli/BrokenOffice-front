@@ -59,7 +59,7 @@ function App() {
   useEffect(() => {
     if (user) {
       axios
-        .get(`${ROUTE}/user/me`, { withCredentials: true })
+        .get(`${ROUTE}/user/me`, { withCredentials: true, headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } })
         .then((res) => res.data)
         .then((data) => {
           dispatch(setUser(data))
@@ -71,7 +71,7 @@ function App() {
           if (user) dispatch(setUser(user))
         })
       axios
-        .get(`${ROUTE}/offices`, { withCredentials: true })
+        .get(`${ROUTE}/offices`, { withCredentials: true, headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } })
         .then((res) => res.data)
         .then((data) => {
           dispatch(setOffices(data))
@@ -83,7 +83,7 @@ function App() {
           if (offices) dispatch(setOffices(offices))
         })
       axios
-        .get(`${ROUTE}/reports/history`, { withCredentials: true })
+        .get(`${ROUTE}/reports/history`, { withCredentials: true, headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } })
         .then((res) => res.data)
         .then((data) => {
           dispatch(setAllReports(data))
@@ -100,8 +100,8 @@ function App() {
         dispatch(setAssignedReports(reports));
         localStorage.setItem("serviceReportsPWA", JSON.stringify(reports))
       }).catch(() => {
-        const reportss = JSON.parse(localStorage.getItem("serviceReportsPWA"));
-        if (reportss) dispatch(setAssignedReports(reportss));
+        const reports = JSON.parse(localStorage.getItem("serviceReportsPWA"));
+        if (reports) dispatch(setAssignedReports(reports));
       })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

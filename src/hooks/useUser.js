@@ -8,6 +8,7 @@ const useUser = (id) => {
     axios
       .get(`${process.env.REACT_APP_ROUTE}/collaborators/${id}`, {
         withCredentials: true,
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
       })
       .then((res) => {
         setSingleUser(res.data);

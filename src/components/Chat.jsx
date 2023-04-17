@@ -59,20 +59,20 @@ export default function Chat({ report, chatType }) {
   const handleClose = async () => {
     const currentChat = await axios.get(
       `http://localhost:3001/chats/history/${chatId}`,
-      { withCredentials: true }
+      { withCredentials: true, headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
     );
 
     if (chatType === "issued") {
       const currentLength = await axios.post(
         "http://localhost:3001/chats/issuerlength",
         { chatId: chatId, chatLength: currentChat.data.length, chatRoom: report },
-        { withCredentials: true }
+        { withCredentials: true, headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
       );
     } else {
       const currentLength = await axios.post(
         "http://localhost:3001/chats/solverlength",
         { chatId: chatId, chatLength: currentChat.data.length, chatRoom: report},
-        { withCredentials: true }
+        { withCredentials: true, headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
       );
       if (user) {
         if (user?.type === process.env.REACT_APP_BETA) {
@@ -91,27 +91,27 @@ export default function Chat({ report, chatType }) {
       const newChat = await axios.post(
         "http://localhost:3001/chats/create",
         { room: report },
-        { withCredentials: true }
+        { withCredentials: true, headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
       );
 
       setChatId(newChat.data._id);
 
       const chatHistory = await axios.get(
         `http://localhost:3001/chats/history/${newChat.data._id}`,
-        { withCredentials: true }
+        { withCredentials: true, headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
       );
 
       if (chatType === "issued") {
         const currentLength = await axios.post(
           "http://localhost:3001/chats/issuerlength",
           { chatId: newChat.data._id, chatLength: chatHistory.data.length,chatRoom: report },
-          { withCredentials: true }
+          { withCredentials: true, headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
         );
       } else {
         const currentLength = await axios.post(
           "http://localhost:3001/chats/solverlength",
           { chatId: newChat.data._id, chatLength: chatHistory.data.length, chatRoom: report },
-          { withCredentials: true }
+          { withCredentials: true, headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
         );
         
       }
@@ -144,7 +144,7 @@ export default function Chat({ report, chatType }) {
       const newMessage = await axios.post(
         "http://localhost:3001/chats/messages",
         { msg: inputValue, room: report },
-        { withCredentials: true }
+        { withCredentials: true, headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
       );
       socket.emit("message_sent", inputValue, user.name, report);
       setIsSending(false);

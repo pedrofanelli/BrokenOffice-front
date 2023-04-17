@@ -31,7 +31,7 @@ const useChange = () => {
       await axios.put(
         `${ROUTE}/user/edit/password`,
         { oldPassword, newPassword },
-        { withCredentials: true }
+        { withCredentials: true, headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
       );
       toast.success("Password changed successfully");
       handleClose();
@@ -59,15 +59,16 @@ const useChange = () => {
       var formData = new FormData();
       formData.append("file", e.target.files[0]);
       handleClose();
-      const { data } = await axios.post(
+      const data = await axios.post(
         `${ROUTE}/user/edit/picture`,
         formData,
         {
           withCredentials: true,
-          headers: { "Content-Type": "multipart/form-data" },
+          headers: { "Content-Type": "multipart/form-data", Authorization: `Bearer ${localStorage.getItem("token")}` },
         }
       )
-      dispatch(setUser(data));
+      dispatch(setUser(data.data.user));
+      localStorage.setItem("token", data.data.token);
     } catch (err) {
       console.error("desde PROFILE,index", err);
     }
@@ -87,10 +88,12 @@ const useChange = () => {
     };
 
     try {
-      const { data } = await axios.put(`${ROUTE}/user/edit/profile`, obj, {
+      const data = await axios.put(`${ROUTE}/user/edit/profile`, obj, {
         withCredentials: true,
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
       });
-      dispatch(setUser(data));
+      dispatch(setUser(data.data.user));
+      localStorage.setItem("token", data.data.token);
       toast.success("Profile changed successfully");
       handleClose();
     } catch (err) {
