@@ -67,7 +67,7 @@ export default function SignInSide() {
                   admin@globant.com
       </Typography>
         <Typography component="body1" >
-                  superAdmin@globant.com
+                  superadmin@globant.com
       </Typography>
         <Typography component="body1" >
                   PASS: brokenoffice123
