@@ -53,9 +53,29 @@ export default function SignInSide() {
         </Box>
       </Modal>
       <Container component="main" maxWidth="lg" sx={{ minHeight: "86vh" }}>
+        <Box sx={{marginTop:"10px", display:"flex", justifyContent:"center", alignItems:"center", flexDirection:"column"}}>
+        <Typography component="h1" variant="h5" >
+                  Users to test application:
+      </Typography>
+        <Typography component="body1" >
+                  standard@globant.com
+      </Typography>
+        <Typography component="body1" >
+                  service@globant.com
+      </Typography>
+        <Typography component="body1" >
+                  admin@globant.com
+      </Typography>
+        <Typography component="body1" >
+                  superAdmin@globant.com
+      </Typography>
+        <Typography component="body1" >
+                  PASS: brokenoffice123
+      </Typography>
+        </Box>
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 2,
           }}
         >
           <Grid container>
@@ -81,7 +101,7 @@ export default function SignInSide() {
             <Grid item xs={12} sm={8} md={5} elevation={6} square="true">
               <Box
                 sx={{
-                  my: 8,
+                  my: 2,
                   mx: 4,
                   display: "flex",
                   flexDirection: "column",
