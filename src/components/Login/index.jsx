@@ -61,7 +61,7 @@ export default function SignInSide() {
                   standard@globant.com
       </Typography>
         <Typography component="body1" >
-                  service@globant.com
+                  service[1-41]@globant.com
       </Typography>
         <Typography component="body1" >
                   admin@globant.com
