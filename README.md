@@ -25,6 +25,7 @@ The project includes the following features:
 - The report can be shared to any email
 - When the report is finished (resolved or rejected) an email is sent to the Standard User
 - If you forget your password, you can write your email, and if it's a valid email and exists in the DB, a link will be generated and sent to your email. The link will contain a token and will be valid for just 2 hours (using [MongoDB TTL](https://www.mongodb.com/docs/manual/tutorial/expire-data/)). After the password is changed, you will recieve an email with that information. 
+- PWA (Progressive web app) was implemented, so if you logged in and lose internet connection, you will still be able to see information on the web app
 
 ## Technologies Used
 
@@ -40,16 +41,24 @@ The project was built using the following technologies:
 - Redux
 - MUI
 - Socket.IO
+- PWA
 - Deploy using AWS 
 
 ## Getting Started
 
 To run the project, follow these steps:
 
-1. Clone the repository
-2. Register for a free API key on the [Device Specs Website](https://www.device-specs.io/categories/smartphones)
-3. Replace the `API_KEY` variable in a `.env` file with your API key
-4. Run in your terminal the following commands:
+1. Clone this repository and the [back-end repo](https://github.com/pedrofanelli/BrokenOffice-back)
+2. Register and create a new Cluster using [MongoDB Atlas](https://www.mongodb.com/atlas/database)
+3. Register in the [Google Cloud Website](https://cloud.google.com/)
+4. Create a new Bucket in Google Cloud Storage and a Service Account (linked to your own)
+5. Enable the API Geolocation in Google Cloud
+6. To use Nodemailer, generate a KEY in your gmail account from which you want to send the emails
+7. Register 
+8. 
+9. 
+10. Replace the `API_KEY` variable in a `.env` file with your API key
+11. Run in your terminal the following commands:
 
 cd back | cd front
 --------|---------
