@@ -1,4 +1,5 @@
-# Broken Office (Back-end)
+# Broken Office (Back-end) 
+https://d1w75bllqpy7f0.cloudfront.net/
 
 Broken Office is a mobile first application that reports problems and damaged items in the offices or homes of "Globers" (workers of Globant) using geolocation and machine learning (with a trained AI).
 
@@ -7,23 +8,23 @@ Broken Office is a mobile first application that reports problems and damaged it
 The project includes the following features:
 
 - Four types of users: 
-  - Standard: Can create a report and see the history of his reports.
-  - Service: Can resolve reports and see the reports where he worked on.
-  - Admin: CRUD of the company offices and CRUD of users (expect other admins).
-  - SuperAdmin: CRUD of the company offices and CRUD of users (including admins).
-- Every user can create a report and see the history of his reports.
-- At the report creation you can add a picture and with machine learning an AI will analyze the photo and determine the type of product broken.
+  - Standard: Can create a report and see the history of his reports
+  - Service: Can resolve reports and see the reports where he worked on
+  - Admin: CRUD of the company offices and CRUD of users (except other admins)
+  - SuperAdmin: CRUD of the company offices and CRUD of users (including admins)
+- Every User can create a report and see the history of his reports
+- Every User can edit his profile and password, storing his profile picture using [Google Cloud Storage](https://cloud.google.com/storage) 
+- At the report creation you can add a picture and with machine learning an AI will analyze the photo and determine the type of product broken
 - At the report creation the picture is stored using [Google Cloud Storage](https://cloud.google.com/storage) 
 - At the report creation you can be geolocalized using [Google Geolocation API](https://developers.google.com/maps/documentation/geolocation/overview?hl=en)
 - At the report creation the closest offices will be determine using [MongoDB Geospacial Queries](https://www.mongodb.com/docs/manual/geospatial-queries/)
-- 
-
-- See all the available smartphones
-- Allow users to create an account and log in
-- Fill the cart and make the checkout to buy any smartphone available (receiving an email after the successful purchase)
-- Special type of user, the admin
-- Admins can edit categories, delete/add products, see all the client orders
-- Admins can delete users, or promote them to be admin
+- The report will be assigned to the Service working on the chosen office with the least amount of active reports
+- If the report is created by a Service User in an office where he also works on, then he won't be assigned his own report to solve it
+- If the report is created successfully, an email will be sent using [Nodemailer](https://nodemailer.com/about/)
+- After the report is created, and the Service User accept it, a live chat can be generated between them using [Socket.IO](https://socket.io/)
+- The report can be shared to any email
+- When the report is finished (resolved or rejected) an email is sent to the Standard User
+- If you forget your password, you can write your email, and if it's a valid email and exists in the DB, a link will be generated and sent to your email. The link will contain a token and will be valid for just 2 hours (using [MongoDB TTL](https://www.mongodb.com/docs/manual/tutorial/expire-data/)). After the password is changed, you will recieve an email with that information. 
 
 ## Technologies Used
 
@@ -31,13 +32,15 @@ The project was built using the following technologies:
 
 - Node.js
 - Express
-- PostgreSQL - Sequelize
+- MongoDB Atlas - Mongoose
 - JWT
 - Nodemailer
-- React (Vite.js)
+- Google Cloud Storage and Maps
+- React 
 - Redux
 - MUI
-- Device Specs API
+- Socket.IO
+- Deploy using AWS 
 
 ## Getting Started
 
