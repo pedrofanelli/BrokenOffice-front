@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# Broken Office (Back-end)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Broken Office is a mobile first application that reports problems and damaged items in the offices or homes of "Globers" (workers of Globant) using geolocation and machine learning (with a trained AI).
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+The project includes the following features:
 
-### `npm start`
+- Four types of users: 
+  - Standard: Can create a report and see the history of his reports.
+  - Service: Can resolve reports and see the reports where he worked on.
+  - Admin: CRUD of the company offices and CRUD of users (expect other admins).
+  - SuperAdmin: CRUD of the company offices and CRUD of users (including admins).
+- Every user can create a report and see the history of his reports.
+- At the report creation you can add a picture and with machine learning an AI will analyze the photo and determine the type of product broken.
+- At the report creation the picture is stored using [Google Cloud Storage](https://cloud.google.com/storage) 
+- At the report creation you can be geolocalized using [Google Geolocation API](https://developers.google.com/maps/documentation/geolocation/overview?hl=en)
+- At the report creation the closest offices will be determine using [MongoDB Geospacial Queries](https://www.mongodb.com/docs/manual/geospatial-queries/)
+- 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- See all the available smartphones
+- Allow users to create an account and log in
+- Fill the cart and make the checkout to buy any smartphone available (receiving an email after the successful purchase)
+- Special type of user, the admin
+- Admins can edit categories, delete/add products, see all the client orders
+- Admins can delete users, or promote them to be admin
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Technologies Used
 
-### `npm test`
+The project was built using the following technologies:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Node.js
+- Express
+- PostgreSQL - Sequelize
+- JWT
+- Nodemailer
+- React (Vite.js)
+- Redux
+- MUI
+- Device Specs API
 
-### `npm run build`
+## Getting Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To run the project, follow these steps:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Clone the repository
+2. Register for a free API key on the [Device Specs Website](https://www.device-specs.io/categories/smartphones)
+3. Replace the `API_KEY` variable in a `.env` file with your API key
+4. Run in your terminal the following commands:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+cd back | cd front
+--------|---------
+npm i   | npm i
+npm run server   | npm run dev
 
-### `npm run eject`
+## Credits
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+This project was created by:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* Guido Bonesi
+* Cristian Blanco
+* Pedro Fanelli
+* Matias Orlando
+* German Cuevas 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
