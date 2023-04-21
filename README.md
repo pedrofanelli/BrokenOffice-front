@@ -54,24 +54,35 @@ To run the project, follow these steps:
 4. Create a new Bucket in Google Cloud Storage and a Service Account (linked to your own)
 5. Enable the API Geolocation in Google Cloud
 6. To use Nodemailer, generate a KEY in your gmail account from which you want to send the emails
-7. Register 
-8. 
-9. 
-10. Replace the `API_KEY` variable in a `.env` file with your API key
-11. Run in your terminal the following commands:
+7. In the BACKEND `.env` file add the following information: URI to your MongoDB Atlas Cluster, the PORT, the SECRET (for JWT), the FRONT link, encrypted code for the different types of User, the credentials for the Google Cloud Service Account, and the credentials for Nodemailer 
+8. In the FRONTEND `.env` file add the following information: the ROUTE for the backend, encrypted code for the different types of User, and the API_KEY for Google Geolocation 
+9. Run in your terminal the following commands:
 
-cd back | cd front
+back-end | front-end
 --------|---------
 npm i   | npm i
-npm run server   | npm run dev
+npm run seed | npm start
+npm run server   | 
 
+## Documentation
+
+Database Schemas
+```
+https://dbdiagram.io/d/6426d6e55758ac5f1725c2a6
+```
+
+Back-end Routes Documentation
+```
+https://dbdiagram.io/d/6426d6e55758ac5f1725c2a6
+```
 ## Credits
 
 This project was created by:
 
-* Guido Bonesi
-* Cristian Blanco
 * Pedro Fanelli
-* Matias Orlando
-* German Cuevas 
+* Jessica Yu
+* Maria Cruz Schena
+* Julieta Magnago
+* Martín Machado
+* Julian Rinaudo
 
