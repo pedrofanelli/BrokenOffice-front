@@ -68,12 +68,12 @@ npm run server   |
 
 Database Schemas
 ```
-https://dbdiagram.io/d/6426d6e55758ac5f1725c2a6
+https://dbdiagram.io/d/642eb6cd8615191cfa8bed87
 ```
 
 Back-end Routes Documentation
 ```
-https://dbdiagram.io/d/6426d6e55758ac5f1725c2a6
+https://documenter.getpostman.com/view/26589377/2s93RTPryD
 ```
 ## Credits
 
