@@ -24,7 +24,7 @@ import { io } from "socket.io-client";
 import checkType from "../utils/checkType";
 import { axiosGetInboxIssuer, axiosGetInboxSolver } from "../utils/axios";
 import { notificationsIssuer, notificationsSolver } from "../state/chat";
-const socket = io("http://localhost:3001");
+const socket = io("https://brokenoffice-back.onrender.com");
 
 export default function Chat({ report, chatType }) {
   const user = useSelector((state) => state.user);
@@ -58,19 +58,19 @@ export default function Chat({ report, chatType }) {
 
   const handleClose = async () => {
     const currentChat = await axios.get(
-      `http://localhost:3001/chats/history/${chatId}`,
+      `https://brokenoffice-back.onrender.com/chats/history/${chatId}`,
       { withCredentials: true, headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
     );
 
     if (chatType === "issued") {
       const currentLength = await axios.post(
-        "http://localhost:3001/chats/issuerlength",
+        "https://brokenoffice-back.onrender.com/chats/issuerlength",
         { chatId: chatId, chatLength: currentChat.data.length, chatRoom: report },
         { withCredentials: true, headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
       );
     } else {
       const currentLength = await axios.post(
-        "http://localhost:3001/chats/solverlength",
+        "https://brokenoffice-back.onrender.com/chats/solverlength",
         { chatId: chatId, chatLength: currentChat.data.length, chatRoom: report},
         { withCredentials: true, headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
       );
@@ -89,7 +89,7 @@ export default function Chat({ report, chatType }) {
   const handleChatConnection = async () => {
     try {
       const newChat = await axios.post(
-        "http://localhost:3001/chats/create",
+        "https://brokenoffice-back.onrender.com/chats/create",
         { room: report },
         { withCredentials: true, headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
       );
@@ -97,19 +97,19 @@ export default function Chat({ report, chatType }) {
       setChatId(newChat.data._id);
 
       const chatHistory = await axios.get(
-        `http://localhost:3001/chats/history/${newChat.data._id}`,
+        `https://brokenoffice-back.onrender.com/chats/history/${newChat.data._id}`,
         { withCredentials: true, headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
       );
 
       if (chatType === "issued") {
         const currentLength = await axios.post(
-          "http://localhost:3001/chats/issuerlength",
+          "https://brokenoffice-back.onrender.com/chats/issuerlength",
           { chatId: newChat.data._id, chatLength: chatHistory.data.length,chatRoom: report },
           { withCredentials: true, headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
         );
       } else {
         const currentLength = await axios.post(
-          "http://localhost:3001/chats/solverlength",
+          "https://brokenoffice-back.onrender.com/chats/solverlength",
           { chatId: newChat.data._id, chatLength: chatHistory.data.length, chatRoom: report },
           { withCredentials: true, headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
         );
@@ -142,7 +142,7 @@ export default function Chat({ report, chatType }) {
       }
 
       const newMessage = await axios.post(
-        "http://localhost:3001/chats/messages",
+        "https://brokenoffice-back.onrender.com/chats/messages",
         { msg: inputValue, room: report },
         { withCredentials: true, headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
       );
